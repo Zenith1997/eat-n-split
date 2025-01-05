@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Button from "./Button";
-
+import { v4 as uuidv4 } from "uuid";
 export default function FormAddFriend({ onAddFriend }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/300");
-  // const [id, setId] = useState(crypto.randomUUID());
+  const [id, setId] = useState(uuidv4());
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = crypto.randomUUID();
+    const id = uuidv4();
     if (!name || !image) return;
     const newFriend = {
       id,
@@ -19,7 +19,7 @@ export default function FormAddFriend({ onAddFriend }) {
     onAddFriend(newFriend);
     console.log(newFriend);
     setName("");
-    //  setId(crypto.randomUUID());
+    //setId(crypto.randomUUID());
   };
   return (
     <form className="form-add-friend" onSubmit={handleSubmit}>
